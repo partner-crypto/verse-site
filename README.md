@@ -26,15 +26,16 @@ To update the site, replace the files in the repository; GitHub republishes in a
 At the top of the script in `index.html`:
 
 - `VERSE_API`: the origin of your API ('' means the same origin as the site)
-- `SUPPORT_EMAIL`: currently `supportverse@fletcherholding.org`, copied from the app's legal pages
-- `LEGAL_ENTITY`: still the placeholder from the app's legal pages
+- `SUPPORT_EMAIL`: `support@versememorizescripture.app`. Porkbun forwards it to your inbox (Email Forwarding on the domain).
+- `LEGAL_ENTITY`: `Partner Limited Liability Company, a Colorado limited liability company`, shown on the Contact page
 
 When `GET {VERSE_API}/api/health` returns `{ "api": "verse" }`, the site switches to live mode and sends every call to your server instead. The full list of endpoints and payloads is in the comment block at the top of the script. It covers auth, profile, password, export, delete, checkout, cancel, resume, switch plan, billing portal, contact, and a `/library` document that holds each person's verses and progress.
 
 Payments: `/billing/checkout` should return a hosted checkout URL (Stripe Checkout or RevenueCat Web Billing), and `/billing/portal` a customer-portal URL. The site never handles card numbers.
 
-## Before you launch
+## Legal pages
 
-- The legal pages still contain the app's placeholders: `[Company legal name]`, `[registered address]`, `[country of incorporation]`, `[governing jurisdiction]` and `[hosting region]`.
-- The support address in the app's legal text is `supportverse@fletcherholding.org`, but your domain is `fletcherholdings.org`. Check which one is right, or switch to an address on `versememorizescripture.app` (Porkbun can forward it to your inbox for free).
-- The Subscription & Billing Terms are written for App Store purchases. Add a section on web checkout before selling on the web.
+The nine legal documents live in `DATA.LEGAL` in the script, dated by `DATA.LEGAL_UPDATED`. They name Partner Limited Liability Company, a Colorado limited liability company, as the operator; Colorado law governs the Terms; every contact address is `support@versememorizescripture.app`.
+
+- No mailing address is listed. To show one, add it to `LEGAL_ENTITY` and to section 12 of the Terms.
+- The Subscription & Billing Terms cover App Store purchases only. Add a section on web checkout before selling on the web.
